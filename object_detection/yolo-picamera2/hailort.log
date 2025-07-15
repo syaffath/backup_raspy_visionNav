@@ -1,0 +1,386 @@
+[2025-07-14 19:10:13.745] [3323] [HailoRT] [info] [device.cpp:49] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 19:10:13.747] [3323] [HailoRT] [info] [control.cpp:108] [control__parse_identify_results] firmware_version is: 4.20.0
+[2025-07-14 19:10:13.750] [3323] [HailoRT] [info] [control.cpp:108] [control__parse_identify_results] firmware_version is: 4.20.0
+[2025-07-14 20:29:04.798] [4984] [HailoRT] [error] [hailort_driver.cpp:240] [validate_driver_version] CHECK failed - Driver version (4.20.0) is different from library version (4.21.0)
+[2025-07-14 20:29:04.798] [4984] [HailoRT] [error] [hailort_driver.cpp:262] [HailoRTDriver] Driver version mismatch, status HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:29:04.798] [4984] [HailoRT] [error] [hailort_driver.cpp:187] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:29:04.827] [4984] [HailoRT] [error] [pcie_device.cpp:91] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:29:04.827] [4984] [HailoRT] [error] [device.cpp:130] [create_pcie] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:35:50.863] [5149] [HailoRT] [error] [hailort_driver.cpp:240] [validate_driver_version] CHECK failed - Driver version (4.20.0) is different from library version (4.21.0)
+[2025-07-14 20:35:50.863] [5149] [HailoRT] [error] [hailort_driver.cpp:262] [HailoRTDriver] Driver version mismatch, status HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:35:50.863] [5149] [HailoRT] [error] [hailort_driver.cpp:187] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:35:50.903] [5149] [HailoRT] [error] [pcie_device.cpp:91] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:35:50.903] [5149] [HailoRT] [error] [device.cpp:130] [create_pcie] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:42:13.519] [2044] [HailoRT] [error] [hailort_driver.cpp:240] [validate_driver_version] CHECK failed - Driver version (4.20.0) is different from library version (4.21.0)
+[2025-07-14 20:42:13.520] [2044] [HailoRT] [error] [hailort_driver.cpp:262] [HailoRTDriver] Driver version mismatch, status HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:42:13.520] [2044] [HailoRT] [error] [hailort_driver.cpp:187] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:42:13.564] [2044] [HailoRT] [error] [pcie_device.cpp:91] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:42:13.564] [2044] [HailoRT] [error] [device.cpp:130] [create_pcie] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:43:20.404] [2061] [HailoRT] [error] [hailort_driver.cpp:240] [validate_driver_version] CHECK failed - Driver version (4.20.0) is different from library version (4.21.0)
+[2025-07-14 20:43:20.404] [2061] [HailoRT] [error] [hailort_driver.cpp:262] [HailoRTDriver] Driver version mismatch, status HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:43:20.404] [2061] [HailoRT] [error] [hailort_driver.cpp:187] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:43:20.440] [2061] [HailoRT] [error] [pcie_device.cpp:91] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:43:20.440] [2061] [HailoRT] [error] [device.cpp:130] [create_pcie] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:43:54.915] [2070] [HailoRT] [error] [hailort_driver.cpp:240] [validate_driver_version] CHECK failed - Driver version (4.20.0) is different from library version (4.21.0)
+[2025-07-14 20:43:54.915] [2070] [HailoRT] [error] [hailort_driver.cpp:262] [HailoRTDriver] Driver version mismatch, status HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:43:54.915] [2070] [HailoRT] [error] [hailort_driver.cpp:187] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:43:54.952] [2070] [HailoRT] [error] [pcie_device.cpp:91] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:43:54.952] [2070] [HailoRT] [error] [device.cpp:130] [create_pcie] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:44:10.540] [2072] [HailoRT] [error] [hailort_driver.cpp:240] [validate_driver_version] CHECK failed - Driver version (4.20.0) is different from library version (4.21.0)
+[2025-07-14 20:44:10.540] [2072] [HailoRT] [error] [hailort_driver.cpp:262] [HailoRTDriver] Driver version mismatch, status HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:44:10.540] [2072] [HailoRT] [error] [hailort_driver.cpp:187] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:44:10.588] [2072] [HailoRT] [error] [pcie_device.cpp:91] [create] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:44:10.588] [2072] [HailoRT] [error] [device.cpp:130] [create_pcie] CHECK_SUCCESS failed with status=HAILO_INVALID_DRIVER_VERSION(76)
+[2025-07-14 20:51:37.980] [2201] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 20:51:37.980] [2201] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:51:37.981] [2201] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:54:03.031] [2226] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 20:54:03.031] [2226] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:54:03.031] [2226] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:55:00.291] [2233] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 20:55:00.291] [2233] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:55:00.291] [2233] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:55:19.419] [2240] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 20:55:19.419] [2240] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:55:19.419] [2240] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:56:10.428] [2248] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 20:56:10.428] [2248] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:56:10.429] [2248] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:58:11.271] [2256] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 20:58:11.272] [2256] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:58:11.272] [2256] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:59:41.395] [2267] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 20:59:41.395] [2267] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 20:59:41.395] [2267] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:02:00.214] [2276] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:02:00.215] [2276] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:02:00.215] [2276] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:02:00.218] [2276] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:02:00.218] [2276] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:02:43.332] [2284] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:02:43.332] [2284] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:02:43.333] [2284] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:04:48.182] [2315] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:04:48.183] [2315] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:04:48.183] [2315] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:06:02.288] [2333] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:06:02.288] [2333] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:06:02.289] [2333] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:06:38.195] [2348] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:06:38.196] [2348] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:06:38.196] [2348] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:07:21.258] [2363] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:07:21.259] [2363] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:07:21.259] [2363] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:09:07.456] [2381] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:09:07.456] [2381] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:09:07.456] [2381] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:09:07.460] [2381] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:09:07.460] [2381] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:11:33.220] [2399] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:11:33.220] [2399] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:11:33.221] [2399] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:11:33.221] [2399] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:11:33.221] [2399] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:12:59.139] [2416] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:12:59.139] [2416] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:12:59.139] [2416] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:12:59.139] [2416] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:12:59.139] [2416] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:14:45.668] [2434] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:14:45.668] [2434] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:14:45.668] [2434] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:14:45.669] [2434] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:14:45.669] [2434] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:15:33.800] [2442] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:15:33.800] [2442] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:15:33.800] [2442] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:15:33.801] [2442] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:15:33.801] [2442] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:16:54.750] [2449] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:16:54.750] [2449] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:16:54.751] [2449] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:18:17.910] [2468] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:18:17.911] [2468] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:18:17.911] [2468] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:18:17.911] [2468] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:18:17.911] [2468] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:19:26.462] [2476] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:19:26.463] [2476] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:19:26.463] [2476] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:21:18.195] [2487] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:21:18.195] [2487] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:21:18.195] [2487] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:22:34.120] [2494] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:22:34.120] [2494] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:22:34.120] [2494] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:22:34.120] [2494] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:22:34.121] [2494] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:23:20.568] [2503] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:23:20.568] [2503] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:23:20.568] [2503] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:23:20.569] [2503] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:23:20.569] [2503] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:26:00.808] [2511] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:26:00.808] [2511] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:26:00.808] [2511] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:26:00.809] [2511] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:26:00.809] [2511] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:27:29.836] [2524] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:27:29.836] [2524] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:27:29.837] [2524] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:29:10.122] [2531] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:29:10.123] [2531] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:29:10.123] [2531] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:29:13.106] [2535] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:29:13.107] [2535] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:29:13.107] [2535] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:31:17.012] [2544] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:31:17.012] [2544] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:31:17.012] [2544] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:31:17.013] [2544] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:31:17.013] [2544] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:32:00.336] [2554] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:32:00.336] [2554] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:32:00.337] [2554] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:32:00.337] [2554] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:32:00.337] [2554] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:32:00.713] [2554] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:34:34.847] [2574] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:34:34.847] [2574] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:34:34.847] [2574] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:34:34.848] [2574] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:34:34.848] [2574] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:47:54.836] [2792] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:47:54.836] [2792] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:47:54.837] [2792] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:47:54.837] [2792] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:47:54.837] [2792] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 21:56:10.796] [2817] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 21:56:10.796] [2817] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 21:56:10.797] [2817] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:05:10.848] [2887] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:05:10.848] [2887] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:05:10.849] [2887] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:05:10.849] [2887] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:05:10.849] [2887] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:09:01.136] [2911] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:09:01.136] [2911] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:09:01.136] [2911] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:09:01.137] [2911] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:09:01.137] [2911] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:11:12.095] [2934] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:11:12.095] [2934] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:11:12.095] [2934] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:11:12.095] [2934] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:11:12.095] [2934] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:11:37.000] [2954] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:11:37.000] [2954] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:11:37.000] [2954] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:12:34.948] [2964] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:12:34.948] [2964] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:12:34.949] [2964] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:12:34.949] [2964] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:12:34.949] [2964] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:17:21.552] [3015] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:17:21.552] [3015] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:17:21.552] [3015] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:17:21.553] [3015] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:17:21.553] [3015] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:18:53.904] [3026] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:18:53.904] [3026] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:18:53.904] [3026] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:23:02.631] [3044] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:23:02.632] [3044] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:23:02.632] [3044] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:26:53.168] [3061] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:26:53.168] [3061] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:26:53.168] [3061] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:26:53.168] [3061] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:26:53.168] [3061] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:33:45.844] [3086] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:33:45.844] [3086] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:33:45.844] [3086] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:33:45.845] [3086] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:33:45.845] [3086] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:34:52.159] [3103] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:34:52.159] [3103] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:34:52.159] [3103] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:34:52.159] [3103] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:34:52.159] [3103] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:35:17.188] [3118] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:35:17.188] [3118] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:35:17.189] [3118] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:35:17.189] [3118] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:35:17.189] [3118] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:41:02.952] [3138] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:41:02.952] [3138] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:41:02.952] [3138] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:41:02.953] [3138] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:41:02.953] [3138] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:41:48.460] [3151] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:41:48.460] [3151] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:41:48.460] [3151] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:41:48.460] [3151] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:41:48.460] [3151] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:44:30.951] [3166] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:44:30.951] [3166] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:44:30.951] [3166] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:44:30.952] [3166] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:44:30.952] [3166] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:45:33.824] [3178] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:45:33.824] [3178] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:45:33.824] [3178] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:46:46.710] [3193] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:46:46.710] [3193] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:46:46.711] [3193] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:46:46.893] [3193] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:46:46.893] [3193] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:46:46.894] [3193] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:48:02.560] [3214] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:48:02.560] [3214] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:48:02.560] [3214] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:48:02.560] [3214] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:48:02.560] [3214] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:49:28.723] [3228] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:49:28.723] [3228] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:49:28.724] [3228] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:49:28.724] [3228] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:49:28.724] [3228] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:50:49.984] [3242] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:50:49.984] [3242] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:50:49.984] [3242] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:50:49.984] [3242] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:50:49.984] [3242] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:54:01.260] [3260] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 22:54:01.260] [3260] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:54:01.260] [3260] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 22:54:01.261] [3260] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:54:01.261] [3260] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:54:01.261] [3260] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 22:59:43.911] [3277] [HailoRT] [error] [file_utils.cpp:124] [open] CHECK failed - Failed opening file, path: /home/raspy/Documents/syafiq/object_detection/yolo5n.hef
+[2025-07-14 22:59:43.911] [3277] [HailoRT] [error] [hef.cpp:560] [parse_hef_file] CHECK_SUCCESS failed with status=HAILO_OPEN_FILE_FAILURE(13)
+[2025-07-14 22:59:43.911] [3277] [HailoRT] [error] [hef.cpp:1060] [Impl] Failed parsing HEF file
+[2025-07-14 22:59:43.911] [3277] [HailoRT] [error] [hef.cpp:333] [create] Failed creating HEF
+[2025-07-14 22:59:43.912] [3277] [HailoRT] [error] [hef.cpp:168] [create] CHECK_SUCCESS failed with status=HAILO_OPEN_FILE_FAILURE(13)
+[2025-07-14 23:00:33.479] [3289] [HailoRT] [error] [file_utils.cpp:124] [open] CHECK failed - Failed opening file, path: /home/raspy/Documents/syafiq/object_detection/yolov5n.hef
+[2025-07-14 23:00:33.479] [3289] [HailoRT] [error] [hef.cpp:560] [parse_hef_file] CHECK_SUCCESS failed with status=HAILO_OPEN_FILE_FAILURE(13)
+[2025-07-14 23:00:33.479] [3289] [HailoRT] [error] [hef.cpp:1060] [Impl] Failed parsing HEF file
+[2025-07-14 23:00:33.479] [3289] [HailoRT] [error] [hef.cpp:333] [create] Failed creating HEF
+[2025-07-14 23:00:33.479] [3289] [HailoRT] [error] [hef.cpp:168] [create] CHECK_SUCCESS failed with status=HAILO_OPEN_FILE_FAILURE(13)
+[2025-07-14 23:01:13.307] [3297] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:01:13.307] [3297] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:01:13.307] [3297] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:01:13.308] [3297] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:01:13.308] [3297] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:01:13.308] [3297] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:03:17.907] [3309] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:03:17.907] [3309] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:03:17.907] [3309] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:03:17.907] [3309] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:03:17.907] [3309] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:04:59.495] [3321] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:04:59.495] [3321] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:04:59.495] [3321] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:04:59.496] [3321] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:09:10.860] [3338] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:09:10.860] [3338] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:09:10.861] [3338] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:09:10.861] [3338] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:09:10.861] [3338] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:11:17.510] [3351] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:11:17.511] [3351] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:11:17.511] [3351] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:11:17.511] [3351] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:11:17.511] [3351] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:12:40.610] [3363] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:12:40.610] [3363] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:12:40.611] [3363] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:12:40.611] [3363] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:12:40.611] [3363] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:13:48.759] [3375] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:13:48.759] [3375] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:13:48.759] [3375] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:13:48.759] [3375] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:13:48.759] [3375] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:13:57.723] [3384] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:13:57.724] [3384] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:13:57.724] [3384] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:13:57.724] [3384] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:13:57.724] [3384] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:14:10.411] [3395] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:14:10.411] [3395] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:14:10.412] [3395] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:14:10.412] [3395] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:14:10.412] [3395] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:15:07.898] [3405] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:15:07.898] [3405] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:15:07.898] [3405] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:15:07.899] [3405] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:15:07.899] [3405] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:15:59.166] [3415] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:15:59.167] [3415] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:15:59.167] [3415] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:15:59.167] [3415] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:17:13.236] [3436] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:17:13.236] [3436] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:17:13.237] [3436] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:17:13.237] [3436] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:17:13.237] [3436] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:17:13.237] [3436] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:18:24.055] [3449] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:18:24.055] [3449] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:18:24.055] [3449] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:18:24.055] [3449] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:18:24.055] [3449] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:18:24.055] [3449] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:18:24.055] [3449] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:18:24.055] [3449] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:22:24.436] [3468] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:22:24.436] [3468] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:22:24.436] [3468] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:22:24.437] [3468] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:22:24.437] [3468] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:22:24.437] [3468] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:22:24.437] [3468] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:22:24.437] [3468] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:23:53.288] [3481] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:23:53.288] [3481] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:23:53.288] [3481] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:23:53.289] [3481] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:23:53.289] [3481] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:23:53.289] [3481] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:23:53.289] [3481] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:23:53.289] [3481] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:33:44.460] [3507] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:33:44.460] [3507] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:33:44.460] [3507] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:33:44.461] [3507] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:33:44.461] [3507] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:33:44.461] [3507] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:33:44.461] [3507] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:33:44.461] [3507] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:35:13.780] [3521] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:35:13.780] [3521] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:35:13.780] [3521] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:35:13.781] [3521] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:35:13.781] [3521] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:35:13.781] [3521] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:35:13.781] [3521] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:35:13.781] [3521] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:36:14.103] [3532] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:36:14.104] [3532] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:36:14.104] [3532] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:36:14.104] [3532] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:36:14.104] [3532] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:36:14.104] [3532] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:36:14.104] [3532] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:36:14.104] [3532] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:38:19.907] [3544] [HailoRT] [info] [device.cpp:51] [Device] OS Version: Linux 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+[2025-07-14 23:38:19.908] [3544] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:38:19.908] [3544] [HailoRT] [info] [control.cpp:113] [control__parse_identify_results] firmware_version is: 4.21.0
+[2025-07-14 23:38:19.908] [3544] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:38:19.908] [3544] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:38:19.908] [3544] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:38:19.908] [3544] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
+[2025-07-14 23:38:19.908] [3544] [HailoRT] [info] [hef.cpp:1994] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: yolov5n
