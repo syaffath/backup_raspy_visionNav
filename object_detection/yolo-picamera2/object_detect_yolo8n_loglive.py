@@ -29,19 +29,24 @@ mean_writer = csv.writer(mean_log)
 
 det_writer.writerow(['frame_id', 'class_name', 'confidence', 'x1', 'y1', 'x2', 'y2'])
 fps_writer.writerow(['frame_id', 'inference_time_s', 'fps'])
-mean_writer.writerow(['frame_id', 'class_name', 'mean_conf'])
+mean_writer.writerow(['frame_id', 'class_name', 'mean_conf', 'std_conf'])
 
 # === Buffer untuk plot ===
 max_len = 100
 fps_data = deque([0]*max_len, maxlen=max_len)
 frame_id_data = deque([0]*max_len, maxlen=max_len)
 frame_ids = deque([], maxlen=max_len)
-mean_conf_history = defaultdict(lambda: deque([], maxlen=max_len))  # class_name → [mean1, mean2, ...]
+mean_conf_history = defaultdict(lambda: deque([], maxlen=max_len))
 
-# === Total mean confidence kumulatif
-total_conf_history = defaultdict(list)  # class_name → list of all confidences
-
+# === Data kumulatif ===
+total_conf_history = defaultdict(list)
 class_colors = ['r', 'g', 'b', 'm', 'c', 'y', 'orange', 'purple', 'brown', 'teal']
+
+# === Setup Figure terpisah ===
+fig1, ax1 = plt.subplots()
+fig2, ax2 = plt.subplots()
+fig3, ax3 = plt.subplots()
+fig4, ax4 = plt.subplots()
 
 # === Plot FPS ===
 def update_fps_plot(i):
@@ -54,22 +59,19 @@ def update_fps_plot(i):
     ax1.grid(True)
     ax1.legend()
 
-# === Plot Mean Confidence per Class ===
+# === Plot Mean Confidence ===
 def update_mean_plot(i):
     ax2.clear()
     if len(frame_ids) == 0:
         ax2.set_title("Waiting for detection...")
         return
-    
     for idx, (cls_name, history) in enumerate(mean_conf_history.items()):
         if len(history) > 0:
-            # Sinkronkan panjang frame_ids dan history
             len_check = min(len(frame_ids), len(history))
             if len_check > 0:
                 frame_subset = list(frame_ids)[-len_check:]
                 history_subset = list(history)[-len_check:]
                 ax2.plot(frame_subset, history_subset, label=f'{cls_name}', color=class_colors[idx % len(class_colors)])
-
     ax2.set_title("Mean Confidence per Class")
     ax2.set_xlabel("Frame Index")
     ax2.set_ylabel("Mean Confidence")
@@ -77,17 +79,15 @@ def update_mean_plot(i):
     ax2.grid(True)
     ax2.legend(loc='upper right')
 
-# === Plot Total Mean per Class ===
+# === Plot Total Mean Confidence ===
 def update_total_mean_plot(i):
     ax3.clear()
     class_names = []
     total_means = []
-
     for cls_name, confs in total_conf_history.items():
         if len(confs) > 0:
             class_names.append(cls_name)
             total_means.append(np.mean(confs))
-
     if class_names:
         ax3.bar(class_names, total_means, color='skyblue')
         ax3.set_ylim(0, 1.05)
@@ -96,11 +96,27 @@ def update_total_mean_plot(i):
         ax3.set_xlabel("Class Name")
         ax3.grid(axis='y')
 
+# === Plot Total Std Dev Confidence (Kumulatif) ===
+def update_total_std_plot(i):
+    ax4.clear()
+    class_names = []
+    total_stds = []
+    for cls_name, confs in total_conf_history.items():
+        if len(confs) > 1:
+            class_names.append(cls_name)
+            total_stds.append(np.std(confs))
+    if class_names:
+        ax4.bar(class_names, total_stds, color='salmon')
+        ax4.set_ylim(0, 0.5)
+        ax4.set_title("Cumulative Std Dev per Class")
+        ax4.set_ylabel("Std Dev")
+        ax4.set_xlabel("Class Name")
+        ax4.grid(axis='y')
+
 # === Fungsi utama deteksi ===
 def run_detection():
     frame_id = 0
     print("[INFO] Running detection... Tekan 'q' untuk keluar.")
-
     try:
         while True:
             start_time = time.time()
@@ -108,18 +124,14 @@ def run_detection():
             results = model.predict(source=frame, conf=0.5, verbose=False)
             boxes = results[0].boxes
             names = results[0].names
-
             class_conf = defaultdict(list)
-
             for box in boxes:
                 cls_id = int(box.cls[0])
                 conf = float(box.conf[0])
                 x1, y1, x2, y2 = map(int, box.xyxy[0])
                 class_name = names[cls_id]
-
                 det_writer.writerow([frame_id, class_name, conf, x1, y1, x2, y2])
                 class_conf[class_name].append(conf)
-
             end_time = time.time()
             duration = end_time - start_time
             fps = 1 / duration if duration > 0 else 0
@@ -127,53 +139,42 @@ def run_detection():
             fps_data.append(fps)
             frame_id_data.append(frame_id)
             frame_ids.append(frame_id)
-
             print(f"\n[Frame {frame_id:04}] Mean Confidence:")
             for class_name, confs in class_conf.items():
                 mean_conf = np.mean(confs)
+                std_conf = np.std(confs) if len(confs) > 1 else 0.0
                 mean_conf_history[class_name].append(mean_conf)
-                mean_writer.writerow([frame_id, class_name, round(mean_conf, 3)])
+                mean_writer.writerow([frame_id, class_name, round(mean_conf, 3), round(std_conf, 3)])
                 total_conf_history[class_name].extend(confs)
-                print(f"{class_name}: mean={mean_conf:.3f}, n={len(confs)}")
-
+                print(f"{class_name}: mean={mean_conf:.3f}, std={std_conf:.3f}, n={len(confs)}")
             for class_name in mean_conf_history:
                 if class_name not in class_conf:
                     mean_conf_history[class_name].append(0.0)
-
             annotated = results[0].plot()
             cv2.imshow("YOLOv8 Detection Live", annotated)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
-
             frame_id += 1
-
     except KeyboardInterrupt:
         print("[INFO] KeyboardInterrupt: Exiting gracefully...")
-
     finally:
         cv2.destroyAllWindows()
         detection_log.close()
         fps_log.close()
         mean_log.close()
         picam2.close()
-
-        # Optional: simpan total mean per class
         with open("total_mean_summary.csv", "w", newline='') as f:
             writer = csv.writer(f)
-            writer.writerow(['class_name', 'total_mean_confidence'])
+            writer.writerow(['class_name', 'total_mean_confidence', 'total_std_dev'])
             for cls, confs in total_conf_history.items():
-                writer.writerow([cls, np.mean(confs)])
-
+                total_std = np.std(confs) if len(confs) > 1 else 0.0
+                writer.writerow([cls, np.mean(confs), total_std])
         print("[INFO] Logging selesai. Grafik bisa ditutup manual jika masih terbuka.")
 
-# === Setup Plot Windows ===
-fig1, ax1 = plt.subplots()
-fig2, ax2 = plt.subplots()
-fig3, ax3 = plt.subplots()
+# === Jalankan deteksi dan plotting ===
 ani1 = animation.FuncAnimation(fig1, update_fps_plot, interval=500)
 ani2 = animation.FuncAnimation(fig2, update_mean_plot, interval=500)
 ani3 = animation.FuncAnimation(fig3, update_total_mean_plot, interval=1000)
-
-# === Jalankan deteksi dan plotting ===
+ani4 = animation.FuncAnimation(fig4, update_total_std_plot, interval=1000)
 threading.Thread(target=run_detection, daemon=True).start()
 plt.show()
