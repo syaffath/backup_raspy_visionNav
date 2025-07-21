@@ -40,6 +40,8 @@ class VOStreamer:
         self.ax.grid(True)
         self.ax.axis("equal")
 
+        
+
     def update_plot(self, x, z):
         self.x_history.append(x)
         self.z_history.append(z)
@@ -86,7 +88,7 @@ class VOStreamer:
 
                     if avg_flow < 0.5:
                         x, y, z = self.position.flatten()
-                        print(f"[{frame_id:05}] 🛌 Idle. Pose: x={x:.2f}, z={z:.2f}")
+                        print(f"[{frame_id:05}] 🛌 Idle. Pose: x={z:.2f}, y={x:.2f}")
                         csv_writer.writerow([frame_id, x, y, z, 0.0, avg_flow, "idle"])
                     else:
                         E, _ = cv2.findEssentialMat(good_next, good_prev, self.K, method=cv2.RANSAC, threshold=1.0)
@@ -98,9 +100,9 @@ class VOStreamer:
                                 self.position += t
                                 x, y, z = self.position.flatten()
 
-                                print(f"[{frame_id:05}] ✅ Moved. Pose: x={x:.2f}, z={z:.2f}")
+                                print(f"[{frame_id:05}] ✅ Moved. Pose: x={z:.2f}, y={x:.2f}")
                                 csv_writer.writerow([frame_id, x, y, z, t_norm, avg_flow, "updated"])
-                                self.update_plot(x, z)
+                                self.update_plot(z, x)
                             else:
                                 print(f"[{frame_id:05}] ⚠️ Skipped update (t norm = {t_norm:.4f})")
 
