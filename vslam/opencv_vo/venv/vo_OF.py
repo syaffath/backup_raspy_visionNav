@@ -20,7 +20,7 @@ from vo_live_plot_log import (
     update_live_plot_and_log,
     SCALE_FACTOR,
     detect_orb_features,
-    draw_orb_features,
+    draw_optical_flow,
     is_motion_significant
 )
 
@@ -71,39 +71,26 @@ class CameraPoses():
         return np.array(self.world_points)
     
     def get_matches(self, img1, img2):
-   
-        # Find the keypoints and descriptors with ORB
-        kp1, des1 = self.orb.detectAndCompute(img1, None)
-        kp2, des2 = self.orb.detectAndCompute(img2, None)
-        # Find matches
-        if len(kp1) > 6 and len(kp2) > 6:
-            matches = self.flann.knnMatch(des1, des2, k=2)
+        # Optical Flow version
+        gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+        gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
-            # Find the matches there do not have a to high distance
-            good_matches = []
-            try:
-                for m, n in matches:
-                    if m.distance < 0.5 * n.distance:
-                        good_matches.append(m)
-            except ValueError:
-                pass
-            
-            # Draw matches
-            img_matches = np.empty((max(img1.shape[0], img2.shape[0]), img1.shape[1] + img2.shape[1], 3), dtype=np.uint8)
-            #cv2.drawMatches(img1, kp1, img2, kp2, good_matches, img_matches, flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
-    
-            #cv2.imshow('Good Matches', img_matches)
-            #cv2.waitKey(50)
-            
-            # Get the image points form the good matches
-            #q1 = [kp1[m.queryIdx] for m in good_matches]
-            #q2 = [kp2[m.trainIdx] for m in good_matches]
-            q1 = np.float32([kp1[m.queryIdx].pt for m in good_matches])
-            q2 = np.float32([kp2[m.trainIdx].pt for m in good_matches])
-        
-            return q1, q2
-        else:
+        # Deteksi fitur dari frame pertama
+        p0 = cv2.goodFeaturesToTrack(gray1, maxCorners=1000, qualityLevel=0.01, minDistance=7)
+        if p0 is None:
             return None, None
+
+        # Lacak menggunakan optical flow Lucas-Kanade
+        p1, st, err = cv2.calcOpticalFlowPyrLK(gray1, gray2, p0, None)
+        if p1 is None or st is None:
+            return None, None
+
+        # Filter hanya yang sukses dilacak
+        good_old = p0[st.flatten() == 1]
+        good_new = p1[st.flatten() == 1]
+
+        return good_old, good_new
+
 
     def get_pose(self, q1, q2):
     
@@ -297,6 +284,8 @@ while True:
     if process_frames and ret:
         q1, q2 = vo.get_matches(old_frame, new_frame)
         #if q1 is not None:
+        if q1 is not None and q2 is not None:
+            new_frame = draw_optical_flow(new_frame, q1, q2)
         if q1 is not None and is_motion_significant(q1, q2):
             if len(q1) > 20 and len(q2) > 20:
                 transf = vo.get_pose(q1, q2)
@@ -304,13 +293,10 @@ while True:
                 #cur_pose = cur_pose * SCALE_FACTOR
         hom_array = np.array([[0,0,0,1]])
         hom_camera_pose = np.concatenate((cur_pose,hom_array), axis=0)
+
         camera_pose_list.append(hom_camera_pose)
-        #scaled_x = cur_pose[0, 3] * SCALE_FACTOR
-        #scaled_y = cur_pose[1, 3] * SCALE_FACTOR
-        #scaled_z = cur_pose[2, 3] * SCALE_FACTOR
         estimated_path.append((cur_pose[0, 3], cur_pose[2, 3]))
-        #estimated_path.append((scaled_x, scaled_z))
-        #estimated_camera_pose_x, estimated_camera_pose_y = scaled_x, scaled_z
+
         estimated_camera_pose_x, estimated_camera_pose_y = cur_pose[0, 3], cur_pose[2, 3]
         update_live_plot_and_log(ax2d, x_data, z_data, cur_pose, fps, csv_writer)
 
@@ -343,9 +329,9 @@ while True:
     cv2.putText(new_frame, str(np.round(cur_pose[1, 3],2)), (540,90), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 1)
     cv2.putText(new_frame, str(np.round(cur_pose[2, 3],2)), (540,130), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 1)
     
-    orb_kps = detect_orb_features(new_frame)
-    new_frame = draw_orb_features(new_frame, orb_kps)
-    #old_frame = new_frame
+    #orb_kps = detect_orb_features(new_frame)
+    #new_frame = draw_orb_features(new_frame, orb_kps)
+
     cv2.imshow("img", new_frame)
     
     #if frame_counter % 20 == 0:

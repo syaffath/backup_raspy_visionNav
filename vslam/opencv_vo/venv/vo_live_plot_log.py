@@ -11,7 +11,7 @@ MOTION_THRESHOLD = 5.0  # dalam piksel
 
 def initialize_live_plot_and_logging():
     # Logging to CSV
-    csv_file = open("vo_log.csv", mode='w', newline='')
+    csv_file = open("vo_log_OF.csv", mode='w', newline='')
     csv_writer = csv.writer(csv_file)
     csv_writer.writerow(["timestamp", "fps", "x", "y", "z"] + [f"R{i}{j}" for i in range(3) for j in range(3)])
 
@@ -63,9 +63,24 @@ def detect_orb_features(image):
     keypoints = orb.detect(image, None)
     return keypoints
 
+
+def draw_optical_flow(image, q1, q2):
+    output = image.copy()
+    q1 = np.squeeze(q1)
+    q2 = np.squeeze(q2)
+
+    for pt1, pt2 in zip(q1, q2):
+        pt1 = tuple(np.round(pt1).astype(int).tolist())
+        pt2 = tuple(np.round(pt2).astype(int).tolist())
+        if len(pt1) == 2 and len(pt2) == 2:
+            cv2.arrowedLine(output, pt1, pt2, color=(0, 255, 0), thickness=1, tipLength=0.3)
+    return output
+
+
 def is_motion_significant(q1, q2, pixel_thresh=MOTION_THRESHOLD):
     if q1 is None or q2 is None or len(q1) == 0 or len(q2) == 0:
         return False
     displacement = np.linalg.norm(q1 - q2, axis=1)
     mean_disp = np.mean(displacement)
     return mean_disp > pixel_thresh
+
