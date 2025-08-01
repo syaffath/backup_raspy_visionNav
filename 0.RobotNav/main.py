@@ -16,6 +16,7 @@ time.sleep(1)
 
 yolo = YoloDetector(use_camera=False)
 vo = CameraPoses(intrinsic, log_path="vo_trajectory_log.csv")
+orb = cv2.ORB_create(nfeatures=400)
 robot = MobileRobot()
 
 prev_time = time.perf_counter()
