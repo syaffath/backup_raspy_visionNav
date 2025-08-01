@@ -15,7 +15,6 @@ picam2.start()
 time.sleep(1)
 
 yolo = YoloDetector(use_camera=False)
-#vo = CameraPoses(intrinsic)
 vo = CameraPoses(intrinsic, log_path="vo_trajectory_log.csv")
 robot = MobileRobot()
 
@@ -59,6 +58,10 @@ try:
         else:
             # Person tidak terdeteksi, boleh cari objek atau jalan pelan
             robot.kendali_speed(0.18, 0.18, 3)
+
+
+
+
 
         end_time = time.perf_counter()
         fps = 1.0 / (end_time - prev_time)

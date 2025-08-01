@@ -91,6 +91,38 @@ class YoloDetector:
             labels.add(nama)
         return labels
 
+    def is_object_in_front(self, frame, threshold=0.4):
+        # threshold = seberapa besar area bbox bagian bawah frame dianggap “halangan”
+        results = self.model.predict(source=frame, conf=self.confidence, verbose=False)
+        boxes = results[0].boxes
+        names = results[0].names
+        h, w = frame.shape[:2]
+        front_objs = []
+        for box in boxes:
+            x1, y1, x2, y2 = map(int, box.xyxy[0])
+            area = (x2 - x1) * (y2 - y1)
+            if y2 > int(0.7 * h):  # Benda di bawah frame (dekat robot)
+                if area > threshold * w * h:  # Cukup besar
+                    front_objs.append((x1, y1, x2, y2))
+        return len(front_objs) > 0
+
+    def get_obstacle_bbox(self, frame):
+        results = self.model.predict(source=frame, conf=self.confidence, verbose=False)
+        boxes = results[0].boxes
+        names = results[0].names
+        max_area = 0
+        bbox_result = None
+        for box in boxes:
+            cls_id = int(box.cls[0])
+            nama = names[cls_id]
+            if nama != "person":  # Selain person
+                x1, y1, x2, y2 = map(int, box.xyxy[0])
+                area = (x2 - x1) * (y2 - y1)
+                if area > max_area:
+                    max_area = area
+                    bbox_result = (x1, y1, x2, y2, float(box.conf[0]))
+        return bbox_result  # (x1, y1, x2, y2, conf) or None
+
     def close(self):
         if self.use_camera:
             self.picam2.close()

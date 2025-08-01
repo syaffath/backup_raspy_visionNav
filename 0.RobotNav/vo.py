@@ -120,6 +120,20 @@ class CameraPoses:
                 self.logfile.write(f"{self.frame_idx},{x},{y},{z}\n")
         return self.cur_pose
 
+    def is_stuck(self, frame1, frame2, min_kp=3, min_movement=2.0):
+        kp1, des1 = self.orb.detectAndCompute(cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY), None)
+        kp2, des2 = self.orb.detectAndCompute(cv2.cvtColor(frame2, cv2.COLOR_BGR2GRAY), None)
+
+        if kp1 is None or kp2 is None or len(kp1) < min_kp or len(kp2) < min_kp:
+            return True  # sangat sedikit fitur, bisa jadi stuck di tembok
+        bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+        matches = bf.match(des1, des2)
+        if len(matches) == 0:
+            return True
+        diffs = [np.linalg.norm(np.array(kp1[m.queryIdx].pt) - np.array(kp2[m.trainIdx].pt)) for m in matches]
+        mean_move = np.mean(diffs)
+        return mean_move < min_movement
+
     def get_xyz(self):
         """Get current x,y,z position (translation only)."""
         return self.cur_pose[0, 3], self.cur_pose[1, 3], self.cur_pose[2, 3]
