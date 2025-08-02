@@ -116,9 +116,20 @@ class CameraPoses:
         if pose_updated:
             x, y, z = self.cur_pose[0, 3], self.cur_pose[1, 3], self.cur_pose[2, 3]
             self.path_xyz.append([x, y, z])
+            # --- Tambahan ambil rotasi (ZYX, dalam derajat)
+            R = self.cur_pose[:, :3]
+            try:
+                from scipy.spatial.transform import Rotation as Rscipy
+                euler = Rscipy.from_matrix(R).as_euler('zyx', degrees=True)
+                Rz, Ry, Rx = euler  # yaw(Z), pitch(Y), roll(X)
+            except ImportError:
+                # Fallback kalau scipy tidak ada, tulis 0 saja
+                Rz, Ry, Rx = 0.0, 0.0, 0.0
+            # --- Logging ke file: frame,x,y,z,Rz,Ry,Rx
             if self.logfile:
-                self.logfile.write(f"{self.frame_idx},{x},{y},{z}\n")
+                self.logfile.write(f"{self.frame_idx},{x},{y},{z},{Rz},{Ry},{Rx}\n")
         return self.cur_pose
+
 
     def is_stuck(self, frame1, frame2, min_kp=3, min_movement=2.0):
         kp1, des1 = self.orb.detectAndCompute(cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY), None)

@@ -7,6 +7,7 @@ from mobile_robot import MobileRobot
 import numpy as np
 import random
 from mpu9250 import MPU9250
+from logger_util import CSVLogger
 
 # Load intrinsic matrix
 with open('intrinsicNew.npy', 'rb') as f:
@@ -22,35 +23,52 @@ vo = CameraPoses(intrinsic, log_path="vo_trajectory_log.csv")
 robot = MobileRobot()
 imu = MPU9250()
 prev_frame = None
+frame_idx = 0
+
+x_gt, y_gt = 0.0, 0.0
+prev_total_pulse = 0
+prev_yaw_deg = imu.get_orientation()[2]
+
+#vo_logger = CSVLogger('vo_trajectory_log.csv', ['frame_idx','x_vo','y_vo','z_vo', 'Rz', 'Ry', 'Rx'])
+yolo_logger = CSVLogger('yolo_detection_log.csv', ['label','conf','x1','y1','x2','y2'])
+groundtruth_logger = CSVLogger('groundtruth_log.csv', ['frame_idx','timestamp','x_gt','y_gt', 'z_gt','yaw','pitch','roll'])
+fps_logger = CSVLogger('fps_log.csv', ['frame_idx','timestamp','FPS'])
+
 
 try:
     while True:
-        t0 = time.perf_counter()
+        #VO and YOLO
         frame = picam2.capture_array()
-        t1 = time.perf_counter()
-        
-        frame_bgr = frame#cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-        t2 = time.perf_counter()
-        
+        frame_bgr = frame #cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
         labels = yolo.get_detected_labels(frame)
-        t3 = time.perf_counter()
-        
         vo_pose = vo.step_with_frame(frame)
         kp = vo.orb.detect(frame_bgr, None)
         frame_orb = cv2.drawKeypoints(frame_bgr, kp, None, color=(0,255,0), flags=0)
-
-
-        #pitch, roll, yaw = imu.get_orientation()
-        #print(f"[IMU] Pitch: {pitch:.2f}, Roll: {roll:.2f}, Yaw: {yaw:.2f}")
-        t4 = time.perf_counter()
-        
         bbox = yolo.get_person_bbox(frame)
-        t5 = time.perf_counter()
-        
+        #obstacle_bbox = yolo.get_obstacle_bbox(frame)
+        #x1_labels, y1_lables, x2_labels, y2_labels, conf = obstacle_bbox
         frame_cx = frame.shape[1] // 2
         
+        #GroundTruth
+        pitch, roll, yaw = imu.get_orientation() #print(f"[IMU] Pitch: {pitch:.2f}, Roll: {roll:.2f}, Yaw: {yaw:.2f}")
+        total_pulse = (robot.count_left + robot.count_right) / 2  # rata-rata
+        delta_pulse = total_pulse - prev_total_pulse
+        distance_cm = delta_pulse / robot.pulse_per_cm
+        prev_total_pulse = total_pulse
+        yaw_rad = np.deg2rad(yaw)
+        # Update posisi (dead-reckoning)
+        x_gt += distance_cm * np.cos(yaw_rad)
+        y_gt += distance_cm * np.sin(yaw_rad)
+
+        #logger
+        timestamp = time.time()
+        #vo_logger.writerow([frame_idx, x, y, z,Rz, Ry, Rx])
+        #yolo_logger.log([frame_idx, labels, conf, x1_labels, y1_lables, x2_labels, y2_labels])
+        groundtruth_logger.log([frame_idx, timestamp, x_gt, y_gt, 0, yaw, pitch, roll])
+        #fps_logger.writerow([frame_idx, timestamp, FPS])
+
         # ----- Bagian kendali robot + visualisasi (SESUAI PUNYAMU) -----
-        if "person" in labels and bbox is not None:
+        if "cell phone" in labels and bbox is not None:
             x1, y1, x2, y2, conf = bbox
             bbox_cx = (x1 + x2) // 2
             bbox_cy = (y1 + y2) // 2
@@ -66,7 +84,7 @@ try:
             margin = 40
             K = 0.1
 
-            forward_speed = 0.3           # boleh juga adaptif, misal makin dekat object makin pelan
+            forward_speed = 0.2           # boleh juga adaptif, misal makin dekat object makin pelan
             turn_speed    = K*error_norm         # -0.18..+0.18, sesuai error
 
             right_speed = forward_speed - turn_speed
@@ -74,8 +92,8 @@ try:
             #print(turn_speed)
 
             if abs(error) < margin:
-                cv2.putText(frame_bgr, "PERSON CENTERED - STOP!", (x1, y1-35), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-                print("PERSON sudah di tengah, robot berhenti.")
+                cv2.putText(frame_bgr, "OBJECT CENTERED - STOP!", (x1, y1-35), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
+                print("OBJECT sudah di tengah, robot berhenti.")
                 robot.stop()
                 cv2.imshow("YOLO Live", frame_bgr)
                 cv2.waitKey(500)  # Tahan sejenak biar pesan terlihat
@@ -90,6 +108,7 @@ try:
             obstacle_bbox = yolo.get_obstacle_bbox(frame)
             if obstacle_bbox is not None:
                 x1, y1, x2, y2, conf = obstacle_bbox
+                yolo_logger.log([labels, conf, x1, y1, x2, y2])
                 bbox_cx = (x1 + x2) // 2
                 bbox_width = x2 - x1
                 bbox_height = y2 - y1
@@ -123,7 +142,7 @@ try:
                 turn_speed = K * error_norm
 
                 # Adaptasi speed maju
-                forward_speed = 0.3
+                forward_speed = 0.2
 
                 max_speed = 0.5
                 min_speed = -0.5
@@ -148,29 +167,28 @@ try:
                         print('udah putar 90 derajat')       
                 # Tidak ada obstacle → jalan lurus
 
-                forward_speed = 0.3
+                forward_speed = 0.2
                 cv2.putText(frame_bgr, "No person detected", (20,40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
                 print(f"[NO Obstacle] Steering: L={forward_speed:.2f} R={forward_speed:.2f}")
                 robot.set_speed(forward_speed, forward_speed)
 
 
-        t_end = time.perf_counter()
-        # Print profiling timing
-        print(
-            f"TIMING: Capture={t1-t0:.3f}s | RGB2BGR={t2-t1:.3f}s | "
-            f"YOLO_labels={t3-t2:.3f}s | VO={t4-t3:.3f}s | YOLO_bbox={t5-t4:.3f}s | "
-            f"Control+Show={t_end-t5:.3f}s | Total={t_end-t0:.3f}s | FPS={1/(t_end-t0):.2f}"
-        )
-
-        cv2.putText(frame_bgr, f"[FPS] = {1/(t_end-t0):.2f}", (frame.shape[1]-170, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,128,0), 2)
+        frame_idx += 1
+        
+        #cv2.putText(frame_bgr, f"[FPS] = {1/(t_end-t0):.2f}", (frame.shape[1]-170, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,128,0), 2)
         cv2.imshow("YOLO Live", frame_bgr)
         cv2.imshow("ORB Keypoints", frame_orb)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         prev_frame = frame
-        #time.sleep(0.1)
+        
+
 finally:
     picam2.close()
     yolo.close()
     robot.stop()
+    #vo_logger.close()
+    yolo_logger.close()
+    groundtruth_logger.close()
+    #fps_logger.close()
     cv2.destroyAllWindows()
