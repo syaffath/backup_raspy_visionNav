@@ -120,8 +120,10 @@ class YoloDetector:
                 area = (x2 - x1) * (y2 - y1)
                 if area > max_area:
                     max_area = area
-                    bbox_result = (x1, y1, x2, y2, float(box.conf[0]))
-        return bbox_result  # (x1, y1, x2, y2, conf) or None
+                    bbox_result = (nama, float(box.conf[0]), x1, y1, x2, y2)
+        return bbox_result  # (label, conf, x1, y1, x2, y2) or None
+
+
 
     def close(self):
         if self.use_camera:

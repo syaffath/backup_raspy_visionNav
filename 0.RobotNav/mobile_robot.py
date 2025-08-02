@@ -93,22 +93,18 @@ class MobileRobot:
         target_pulse = int(arc * self.pulse_per_cm)
         self.kit.motor2.throttle = speed
         self.kit.motor1.throttle = -speed
-        #while self.count_left < target_pulse and self.count_right < target_pulse:
-            #print(f"Left: {self.count_left}, Right: {self.count_right}")
-        #    time.sleep(0.01)
+        while self.count_left < target_pulse and self.count_right < target_pulse:
+            print(f"Left: {self.count_left}, Right: {self.count_right}")
+            time.sleep(0.01)
         self.stop()
 
     def belok_kanan_derajat(self, speed, derajat, jarak_sumbu_roda_cm=10):
-        # Belok kanan: roda kiri maju, roda kanan mundur
         self.reset_encoder()
         arc = (3.1416 * jarak_sumbu_roda_cm) * (derajat / 360)
         target_pulse = int(arc * self.pulse_per_cm)
         self.kit.motor2.throttle = -speed
         self.kit.motor1.throttle = speed
-        while self.count_left < target_pulse and self.count_right < target_pulse:
-            print(f"Left: {self.count_left}, Right: {self.count_right}")
-        time.sleep(0.01)
-        self.stop()
+        return target_pulse
 
     def kendali_speed(self, left_speed, right_speed, durasi_detik):
         """

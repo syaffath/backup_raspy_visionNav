@@ -29,10 +29,9 @@ x_gt, y_gt = 0.0, 0.0
 prev_total_pulse = 0
 prev_yaw_deg = imu.get_orientation()[2]
 
-#vo_logger = CSVLogger('vo_trajectory_log.csv', ['frame_idx','x_vo','y_vo','z_vo', 'Rz', 'Ry', 'Rx'])
 yolo_logger = CSVLogger('yolo_detection_log.csv', ['label','conf','x1','y1','x2','y2'])
 groundtruth_logger = CSVLogger('groundtruth_log.csv', ['frame_idx','timestamp','x_gt','y_gt', 'z_gt','yaw','pitch','roll'])
-fps_logger = CSVLogger('fps_log.csv', ['frame_idx','timestamp','FPS'])
+#fps_logger = CSVLogger('fps_log.csv', ['frame_idx','timestamp','FPS'])
 
 
 try:
@@ -45,9 +44,8 @@ try:
         kp = vo.orb.detect(frame_bgr, None)
         frame_orb = cv2.drawKeypoints(frame_bgr, kp, None, color=(0,255,0), flags=0)
         bbox = yolo.get_person_bbox(frame)
-        #obstacle_bbox = yolo.get_obstacle_bbox(frame)
-        #x1_labels, y1_lables, x2_labels, y2_labels, conf = obstacle_bbox
         frame_cx = frame.shape[1] // 2
+        
         
         #GroundTruth
         pitch, roll, yaw = imu.get_orientation() #print(f"[IMU] Pitch: {pitch:.2f}, Roll: {roll:.2f}, Yaw: {yaw:.2f}")
@@ -62,53 +60,52 @@ try:
 
         #logger
         timestamp = time.time()
-        #vo_logger.writerow([frame_idx, x, y, z,Rz, Ry, Rx])
-        #yolo_logger.log([frame_idx, labels, conf, x1_labels, y1_lables, x2_labels, y2_labels])
         groundtruth_logger.log([frame_idx, timestamp, x_gt, y_gt, 0, yaw, pitch, roll])
         #fps_logger.writerow([frame_idx, timestamp, FPS])
 
         # ----- Bagian kendali robot + visualisasi (SESUAI PUNYAMU) -----
-        if "cell phone" in labels and bbox is not None:
+        if "person" in labels and bbox is not None:
             x1, y1, x2, y2, conf = bbox
             bbox_cx = (x1 + x2) // 2
             bbox_cy = (y1 + y2) // 2
+            yolo_logger.log(["person", conf, x1, y1, x2, y2])
 
             # Visualisasi: Draw bbox, tengah bbox, dan garis ke tengah frame
-            cv2.rectangle(frame_bgr, (x1, y1), (x2, y2), (0,255,0), 2)
-            cv2.circle(frame_bgr, (bbox_cx, bbox_cy), 5, (0,0,255), -1)
-            cv2.line(frame_bgr, (frame_cx, 0), (frame_cx, frame.shape[0]), (255,0,0), 1)
-            cv2.putText(frame_bgr, f"delta_x: {bbox_cx-frame_cx}", (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
+            #cv2.rectangle(frame_bgr, (x1, y1), (x2, y2), (0,255,0), 2)
+            #cv2.circle(frame_bgr, (bbox_cx, bbox_cy), 5, (0,0,255), -1)
+            #cv2.line(frame_bgr, (frame_cx, 0), (frame_cx, frame.shape[0]), (255,0,0), 1)
+            #cv2.putText(frame_bgr, f"delta_x: {bbox_cx-frame_cx}", (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
 
             error = bbox_cx - frame_cx
             error_norm = error/frame_cx
             margin = 40
             K = 0.1
 
-            forward_speed = 0.2           # boleh juga adaptif, misal makin dekat object makin pelan
+            forward_speed = 0.3           # boleh juga adaptif, misal makin dekat object makin pelan
             turn_speed    = K*error_norm         # -0.18..+0.18, sesuai error
 
             right_speed = forward_speed - turn_speed
             left_speed  = forward_speed + turn_speed
-            #print(turn_speed)
 
             if abs(error) < margin:
                 cv2.putText(frame_bgr, "OBJECT CENTERED - STOP!", (x1, y1-35), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
                 print("OBJECT sudah di tengah, robot berhenti.")
+                #time.sleep(2)
                 robot.stop()
                 cv2.imshow("YOLO Live", frame_bgr)
-                cv2.waitKey(500)  # Tahan sejenak biar pesan terlihat
+                cv2.waitKey(10000)  # Tahan sejenak biar pesan terlihat
                 break
             else:
                 # Belok proporsional sambil maju
                 print(f"Steering: left={left_speed:.2f}, right={right_speed:.2f}, diff={error}")
                 robot.set_speed(left_speed, right_speed)
-                cv2.putText(frame_bgr, f"Steering: L={left_speed:.2f} R={right_speed:.2f}", 
-                            (10, frame.shape[0]-15), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
+                #cv2.putText(frame_bgr, f"Steering: L={left_speed:.2f} R={right_speed:.2f}", 
+                #            (10, frame.shape[0]-15), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
         else:
             obstacle_bbox = yolo.get_obstacle_bbox(frame)
             if obstacle_bbox is not None:
-                x1, y1, x2, y2, conf = obstacle_bbox
-                yolo_logger.log([labels, conf, x1, y1, x2, y2])
+                label, conf, x1, y1, x2, y2 = obstacle_bbox
+                yolo_logger.log([frame_idx, timestamp, label, conf, x1, y1, x2, y2])
                 bbox_cx = (x1 + x2) // 2
                 bbox_width = x2 - x1
                 bbox_height = y2 - y1
@@ -136,13 +133,13 @@ try:
                     print('obstacle kecil - arah ke tengah')
 
                 error_norm = error / frame_cx
-                print(error_norm)
+                #print(error_norm)
                 # Kendali belok adaptif
                 K = 0.1
                 turn_speed = K * error_norm
 
                 # Adaptasi speed maju
-                forward_speed = 0.2
+                forward_speed = 0.3
 
                 max_speed = 0.5
                 min_speed = -0.5
@@ -152,32 +149,36 @@ try:
 
                 right_speed = max(min_speed, min(max_speed, right_speed))
                 left_speed  = max(min_speed, min(max_speed, left_speed))
-
+                
+                robot.set_speed(left_speed, right_speed)    
                 print(f"[Obstacle] Steering: L={left_speed:.2f} R={right_speed:.2f} width={bbox_width}")
-                robot.set_speed(left_speed, right_speed)
-                cv2.rectangle(frame_bgr, (x1, y1), (x2, y2), (0,128,255), 2)
-                cv2.putText(frame_bgr, f"Obstacle width: {bbox_width}", (x1, y1-15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,128,255), 2)
-                cv2.putText(frame_bgr, f"Obstacle height: {bbox_height}", (x1, y1-35), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,128,255), 2)
+                
+                #cv2.rectangle(frame_bgr, (x1, y1), (x2, y2), (0,128,255), 2)
+                #cv2.putText(frame_bgr, f"Obstacle width: {bbox_width}", (x1, y1-15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,128,255), 2)
+                #cv2.putText(frame_bgr, f"Obstacle height: {bbox_height}", (x1, y1-35), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,128,255), 2)
 
             else:
                 if prev_frame is not None:
                     if vo.is_stuck(prev_frame, frame):
                         print("[VO] Robot diduga mentok/tidak bergerak, putar 90 derajat!")
-                        robot.belok_kanan_derajat(0.3, 90)
-                        print('udah putar 90 derajat')       
+                        robot.belok_kanan_derajat(0.4, 90)
+                        print('udah putar 90 derajat')    
+                        time.sleep(5)
+                    else:
+                        forward_speed = 0.3
+                        robot.set_speed(forward_speed, forward_speed)  
+                        print(f"[NO Obstacle] Steering: L={forward_speed:.2f} R={forward_speed:.2f}")      
                 # Tidak ada obstacle → jalan lurus
 
-                forward_speed = 0.2
-                cv2.putText(frame_bgr, "No person detected", (20,40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,255), 2)
-                print(f"[NO Obstacle] Steering: L={forward_speed:.2f} R={forward_speed:.2f}")
+                forward_speed = 0.5
                 robot.set_speed(forward_speed, forward_speed)
-
+                print(f"[NO Obstacle] Steering: L={forward_speed:.2f} R={forward_speed:.2f}")
 
         frame_idx += 1
         
         #cv2.putText(frame_bgr, f"[FPS] = {1/(t_end-t0):.2f}", (frame.shape[1]-170, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,128,0), 2)
         cv2.imshow("YOLO Live", frame_bgr)
-        cv2.imshow("ORB Keypoints", frame_orb)
+        #cv2.imshow("ORB Keypoints", frame_orb)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         prev_frame = frame
