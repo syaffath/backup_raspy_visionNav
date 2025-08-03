@@ -53,7 +53,7 @@ try:
         frame_cx = frame.shape[1] // 2
 
         # 2. YOLO (per 6 frame)
-        if frame_idx % 10 == 0:
+        if frame_idx % 10000 == 0:
             last_labels = yolo.get_detected_labels(frame)
             last_bbox = yolo.get_person_bbox(frame)
             last_obstacle_bbox = yolo.get_obstacle_bbox(frame)
@@ -179,11 +179,11 @@ try:
               f"({1/elapsed_time:.2f} FPS)")
 
         # Maintain 6 FPS loop rate
-        desired_loop_duration = 1.0 / 6.0  # ~0.1667 seconds per loop
-        sleep_time = max(0.0, desired_loop_duration - elapsed_time)
-        if sleep_time > 0:
-            print(f"[SLEEP] Delaying for {sleep_time:.3f} s to maintain 6 FPS")
-            time.sleep(sleep_time)
+        #desired_loop_duration = 1.0 / 1# 6.0  # ~0.1667 seconds per loop
+        #sleep_time = max(0.0, desired_loop_duration - elapsed_time)
+        #if sleep_time > 0:
+        #    print(f"[SLEEP] Delaying for {sleep_time:.3f} s to maintain 6 FPS")
+        #    time.sleep(sleep_time)
 
 finally:
     picam2.close()
