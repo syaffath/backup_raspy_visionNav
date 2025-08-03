@@ -97,38 +97,41 @@ class CameraPoses:
         return [R1, t]
 
     def step_with_frame(self, new_frame):
-        """
-        Proses satu frame baru. Harus dipanggil setiap loop dari main dengan frame kamera.
-        Update pose jika old_frame sudah ada.
-        Return: pose saat ini (np.array shape (3,4))
-        """
         self.frame_idx += 1
-        pose_updated = False
+        q1, q2 = None, None
+        transf = np.eye(4)
+
         if self.old_frame is not None:
             q1, q2 = self.get_matches(self.old_frame, new_frame)
-            # (opsional: filter is_motion_significant(q1, q2) jika ingin stabilitas)
             if q1 is not None and len(q1) > 20 and len(q2) > 20:
                 transf = self.get_pose(q1, q2)
-                self.cur_pose = self.cur_pose @ transf
-                pose_updated = True
+            else:
+                print(f"[VO] Match terlalu sedikit di frame {self.frame_idx}, gunakan identity transform.")
+        else:
+            print(f"[VO] Frame pertama, inisialisasi.")
+
+        self.cur_pose = self.cur_pose @ transf
         self.old_frame = new_frame
-        # Logging
-        if pose_updated:
-            x, y, z = self.cur_pose[0, 3], self.cur_pose[1, 3], self.cur_pose[2, 3]
-            self.path_xyz.append([x, y, z])
-            # --- Tambahan ambil rotasi (ZYX, dalam derajat)
-            R = self.cur_pose[:, :3]
-            try:
-                from scipy.spatial.transform import Rotation as Rscipy
-                euler = Rscipy.from_matrix(R).as_euler('zyx', degrees=True)
-                Rz, Ry, Rx = euler  # yaw(Z), pitch(Y), roll(X)
-            except ImportError:
-                # Fallback kalau scipy tidak ada, tulis 0 saja
-                Rz, Ry, Rx = 0.0, 0.0, 0.0
-            # --- Logging ke file: frame,x,y,z,Rz,Ry,Rx
-            if self.logfile:
-                self.logfile.write(f"{self.frame_idx},{x},{y},{z},{Rz},{Ry},{Rx}\n")
-        return self.cur_pose
+
+        x, y, z = self.cur_pose[0, 3], self.cur_pose[1, 3], self.cur_pose[2, 3]
+        x = -1 * z
+        y = -1 * y 
+        z = -1 * x
+        self.path_xyz.append([x, y, z])
+
+        R = self.cur_pose[:, :3]
+        try:
+            from scipy.spatial.transform import Rotation as Rscipy
+            euler = Rscipy.from_matrix(R).as_euler('zyx', degrees=True)
+            Rz, Ry, Rx = euler
+        except ImportError:
+            Rz, Ry, Rx = 0.0, 0.0, 0.0
+
+        # log_data selalu di-return
+        log_data = (self.frame_idx, x, y, z, Rz, Ry, Rx)
+        return self.cur_pose, log_data
+
+
 
 
     def is_stuck(self, frame1, frame2, min_kp=3, min_movement=2.0):

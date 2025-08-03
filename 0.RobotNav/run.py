@@ -29,6 +29,7 @@ x_gt, y_gt = 0.0, 0.0
 prev_total_pulse = 0
 prev_yaw_deg = imu.get_orientation()[2]
 
+vo_logger = CSVLogger('vo_trajectory_log.csv', ['frame_idx','x','y','z','yaw','pitch','roll'])
 yolo_logger = CSVLogger('yolo_detection_log.csv', ['label','conf','x1','y1','x2','y2'])
 groundtruth_logger = CSVLogger('groundtruth_log.csv', ['frame_idx','timestamp','x_gt','y_gt', 'z_gt','yaw','pitch','roll'])
 
@@ -49,9 +50,10 @@ try:
         frame = picam2.capture_array()
         frame_bgr = frame
         t_capture = time.time()
+        frame_cx = frame.shape[1] // 2
 
         # 2. YOLO (per 6 frame)
-        if frame_idx % 1 == 0:
+        if frame_idx % 10 == 0:
             last_labels = yolo.get_detected_labels(frame)
             last_bbox = yolo.get_person_bbox(frame)
             last_obstacle_bbox = yolo.get_obstacle_bbox(frame)
@@ -60,13 +62,7 @@ try:
         obstacle_bbox = last_obstacle_bbox
         t_yolo = time.time()
 
-        # 3. Visual Odometry
-        vo_pose = vo.step_with_frame(frame)
-        kp = vo.orb.detect(frame_bgr, None)
-        frame_orb = cv2.drawKeypoints(frame_bgr, kp, None, color=(0,255,0), flags=0)
-        t_vo = time.time()
-
-        # 4. GroundTruth
+        # 3. GroundTruth
         pitch, roll, yaw = imu.get_orientation()
         total_pulse = (robot.count_left + robot.count_right) / 2
         delta_pulse = total_pulse - prev_total_pulse
@@ -76,14 +72,22 @@ try:
         x_gt += distance_cm * np.cos(yaw_rad)
         y_gt += distance_cm * np.sin(yaw_rad)
         timestamp = time.time()
-        groundtruth_logger.log([frame_idx, timestamp, x_gt, y_gt, 0, yaw, pitch, roll])
+        groundtruth_logger.log([frame_idx, timestamp, y_gt, x_gt, 0, yaw, pitch, roll])
         t_gt = time.time()
 
-        frame_cx = frame.shape[1] // 2
+        # 4. VO
+        vo_pose, vo_log = vo.step_with_frame(frame)
+        kp = vo.orb.detect(frame_bgr, None)
+        frame_orb = cv2.drawKeypoints(frame_bgr, kp, None, color=(0,255,0), flags=0)
+        # log_data selalu tersedia sekarang
+        frame_id, x_vo, y_vo, z_vo, yaw_vo, pitch_vo, roll_vo = vo_log
+        x_vo = x_vo * np.cos(yaw_rad)
+        y_vo = x_vo * np.sin(yaw_rad)
+        vo_logger.log([frame_id, x_vo, y_vo, z_vo, yaw_vo, pitch_vo, roll_vo])
+        t_vo = time.time()
 
         # 5. Control & Decision
         if is_turning:
-            # Sedang belok kanan
             if abs(robot.count_left) < target_pulse and abs(robot.count_right) < target_pulse:
                 print("[TURNING] Robot masih belok... kamera tetap update")
                 robot.kit.motor2.throttle = -0.3
@@ -147,7 +151,6 @@ try:
             if prev_frame is not None and vo.is_stuck(prev_frame, frame):
                 print("[VO] Robot diduga mentok/tidak bergerak, mulai belok kanan...")
                 target_pulse = robot.belok_kanan_derajat(0.3, 90)
-                #time.sleep(2)
                 is_turning = True
             else:
                 forward_speed = 0.3
@@ -160,24 +163,33 @@ try:
         prev_frame = frame
 
         # Show
-        cv2.imshow("YOLO Live", frame_bgr)
+        cv2.imshow("YOLO Live with ORB", frame_orb)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         loop_end = time.time()
 
         # Timing info
+        elapsed_time = loop_end - loop_start
         print(f"[TIMING] Capture: {(t_capture - loop_start)*1000:.1f} ms | "
               f"YOLO: {(t_yolo - t_capture)*1000:.1f} ms | "
               f"VO: {(t_vo - t_yolo)*1000:.1f} ms | "
               f"GroundTruth: {(t_gt - t_vo)*1000:.1f} ms | "
               f"Control+Show: {(loop_end - t_gt)*1000:.1f} ms | "
-              f"Total: {(loop_end - loop_start)*1000:.1f} ms "
-              f"({1/(loop_end - loop_start):.2f} FPS)")
+              f"Total: {(elapsed_time)*1000:.1f} ms "
+              f"({1/elapsed_time:.2f} FPS)")
+
+        # Maintain 6 FPS loop rate
+        desired_loop_duration = 1.0 / 6.0  # ~0.1667 seconds per loop
+        sleep_time = max(0.0, desired_loop_duration - elapsed_time)
+        if sleep_time > 0:
+            print(f"[SLEEP] Delaying for {sleep_time:.3f} s to maintain 6 FPS")
+            time.sleep(sleep_time)
 
 finally:
     picam2.close()
     yolo.close()
     robot.stop()
+    vo_logger.close()
     yolo_logger.close()
     groundtruth_logger.close()
     cv2.destroyAllWindows()
