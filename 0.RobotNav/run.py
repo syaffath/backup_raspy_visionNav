@@ -81,8 +81,8 @@ try:
         frame_orb = cv2.drawKeypoints(frame_bgr, kp, None, color=(0,255,0), flags=0)
         # log_data selalu tersedia sekarang
         frame_id, x_vo, y_vo, z_vo, yaw_vo, pitch_vo, roll_vo = vo_log
-        x_vo = x_vo * np.cos(yaw_rad)
-        y_vo = x_vo * np.sin(yaw_rad)
+        #x_vo = x_vo * np.cos(yaw_rad)
+        #y_vo = x_vo * np.sin(yaw_rad)
         vo_logger.log([frame_id, x_vo, y_vo, z_vo, yaw_vo, pitch_vo, roll_vo])
         t_vo = time.time()
 

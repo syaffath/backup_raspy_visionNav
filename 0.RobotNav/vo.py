@@ -113,10 +113,10 @@ class CameraPoses:
         self.cur_pose = self.cur_pose @ transf
         self.old_frame = new_frame
 
-        x, y, z = self.cur_pose[0, 3], self.cur_pose[1, 3], self.cur_pose[2, 3]
-        x = -1 * z
+        x, y, z = self.cur_pose[2, 3], self.cur_pose[1, 3], self.cur_pose[0, 3]
+        x = -1 * x
         y = -1 * y 
-        z = -1 * x
+        z = -1 * z
         self.path_xyz.append([x, y, z])
 
         R = self.cur_pose[:, :3]
