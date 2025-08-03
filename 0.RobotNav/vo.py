@@ -96,6 +96,14 @@ class CameraPoses:
         self.world_points.append(t)
         return [R1, t]
 
+    def is_motion_significant(self, q1, q2, pixel_thresh=5):
+        if q1 is None or q2 is None or len(q1) == 0 or len(q2) == 0:
+            return False
+        displacement = np.linalg.norm(q1 - q2, axis=1)
+        mean_disp = np.mean(displacement)
+        return mean_disp > pixel_thresh
+
+
     def step_with_frame(self, new_frame):
         self.frame_idx += 1
         q1, q2 = None, None
@@ -103,7 +111,7 @@ class CameraPoses:
 
         if self.old_frame is not None:
             q1, q2 = self.get_matches(self.old_frame, new_frame)
-            if q1 is not None and len(q1) > 20 and len(q2) > 20:
+            if q1 is not None and len(q1) > 20 and len(q2) > 20 and self.is_motion_significant(q1, q2):
                 transf = self.get_pose(q1, q2)
             else:
                 print(f"[VO] Match terlalu sedikit di frame {self.frame_idx}, gunakan identity transform.")

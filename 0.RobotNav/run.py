@@ -31,7 +31,7 @@ prev_yaw_deg = imu.get_orientation()[2]
 
 vo_logger = CSVLogger('vo_trajectory_log.csv', ['frame_idx','x','y','z','yaw','pitch','roll'])
 yolo_logger = CSVLogger('yolo_detection_log.csv', ['label','conf','x1','y1','x2','y2'])
-groundtruth_logger = CSVLogger('groundtruth_log.csv', ['frame_idx','timestamp','x_gt','y_gt', 'z_gt','yaw','pitch','roll'])
+groundtruth_logger = CSVLogger('groundtruth_log.csv', ['frame_idx','x_gt','y_gt', 'z_gt','yaw','pitch','roll'])
 
 # YOLO buffer
 last_labels = []
@@ -71,8 +71,8 @@ try:
         yaw_rad = np.deg2rad(yaw)
         x_gt += distance_cm * np.cos(yaw_rad)
         y_gt += distance_cm * np.sin(yaw_rad)
-        timestamp = time.time()
-        groundtruth_logger.log([frame_idx, timestamp, y_gt, x_gt, 0, yaw, pitch, roll])
+        #timestamp = time.time()
+        groundtruth_logger.log([frame_idx, y_gt, x_gt, 0, yaw, pitch, roll])
         t_gt = time.time()
 
         # 4. VO
@@ -121,7 +121,7 @@ try:
 
         elif obstacle_bbox is not None:
             label, conf, x1, y1, x2, y2 = obstacle_bbox
-            yolo_logger.log([frame_idx, timestamp, label, conf, x1, y1, x2, y2])
+            yolo_logger.log([frame_idx, label, conf, x1, y1, x2, y2])
             bbox_cx = (x1 + x2) // 2
             bbox_width = x2 - x1
             margin = 20
