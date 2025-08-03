@@ -27,7 +27,7 @@ frame_idx = 0
 
 x_gt, y_gt = 0.0, 0.0
 prev_total_pulse = 0
-prev_yaw_deg = imu.get_orientation()[2]
+#prev_yaw_deg = imu.get_orientation()[2]
 
 vo_logger = CSVLogger('vo_trajectory_log.csv', ['frame_idx','x','y','z','yaw','pitch','roll'])
 yolo_logger = CSVLogger('yolo_detection_log.csv', ['label','conf','x1','y1','x2','y2'])
@@ -66,13 +66,18 @@ try:
         pitch, roll, yaw = imu.get_orientation()
         total_pulse = (robot.count_left + robot.count_right) / 2
         delta_pulse = total_pulse - prev_total_pulse
+
+        if delta_pulse < 0 or not np.isfinite(delta_pulse):
+            print(f"[WARNING] delta_pulse tidak valid: {delta_pulse}")
+            delta_pulse = 0
+
         distance_cm = delta_pulse / robot.pulse_per_cm
-        prev_total_pulse = total_pulse
+        prev_total_pulse = total_pulse    
         yaw_rad = np.deg2rad(yaw)
         x_gt += distance_cm * np.cos(yaw_rad)
         y_gt += distance_cm * np.sin(yaw_rad)
         #timestamp = time.time()
-        groundtruth_logger.log([frame_idx, y_gt, x_gt, 0, yaw, pitch, roll])
+        groundtruth_logger.log([frame_idx, x_gt, y_gt, 0, yaw, pitch, roll])
         t_gt = time.time()
 
         # 4. VO
