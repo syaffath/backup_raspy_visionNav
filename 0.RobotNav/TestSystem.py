@@ -9,8 +9,8 @@ from mpu9250 import MPU9250
 from logger_util import CSVLogger
 
 # --- Logger untuk latency dan FPS ---
-latency_logger = CSVLogger("latency_fps_log.csv", [
-    "frame_idx", "t_capture_ms", "t_yolo_ms", "t_vo_ms", "t_gt_ms", "t_control_show_ms", "t_total_ms", "fps"
+latency_logger = CSVLogger("latency_fps_log_without YOLO.csv", [
+    "frame_idx", "t_capture_ms", "t_vo_ms", "t_gt_ms", "t_control_show_ms", "t_total_ms", "fps"
 ])
 
 # Simpan statistik untuk rata-rata
@@ -56,13 +56,13 @@ try:
         frame_cx = frame.shape[1] // 2
 
         # --- 2. YOLO ---
-        #last_labels = yolo.get_detected_labels(frame)
-        #last_bbox = yolo.get_person_bbox(frame)
-        #last_obstacle_bbox = yolo.get_obstacle_bbox(frame)
-        #labels = last_labels
-        #bbox = last_bbox
-        #obstacle_bbox = last_obstacle_bbox
-        #t_yolo = time.time()
+        last_labels = yolo.get_detected_labels(frame)
+        last_bbox = yolo.get_person_bbox(frame)
+        last_obstacle_bbox = yolo.get_obstacle_bbox(frame)
+        labels = last_labels
+        bbox = last_bbox
+        obstacle_bbox = last_obstacle_bbox
+        t_yolo = time.time()
 
         # --- 3. GroundTruth ---
         pitch, roll, yaw = imu.get_orientation()
@@ -180,13 +180,13 @@ try:
         # --- Latency ---
         t_capture_ms = (t_capture - loop_start) * 1000
         t_yolo_ms = (t_yolo - t_capture) * 1000
-        t_gt_ms = (t_gt - t_yolo) * 1000
+        t_gt_ms = (t_gt - t_capture) * 1000
         t_vo_ms = (t_vo - t_gt) * 1000
-        t_control_show_ms = (loop_end - t_gt) * 1000
+        t_control_show_ms = (loop_end - t_vo) * 1000
         t_total_ms = elapsed_time * 1000
 
         latency_logger.log([
-            frame_idx, t_capture_ms, t_yolo_ms, t_vo_ms, t_gt_ms, t_control_show_ms, t_total_ms, fps
+            frame_idx, t_capture_ms, t_vo_ms, t_gt_ms, t_control_show_ms, t_total_ms, fps
         ])
 
         fps_list.append(fps)

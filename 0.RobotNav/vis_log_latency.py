@@ -7,7 +7,7 @@ def read_timing_log(path):
     data = {
         "frame_idx": [],
         "t_capture_ms": [],
-        "t_yolo_ms": [],
+        #"t_yolo_ms": [],
         "t_vo_ms": [],
         "t_gt_ms": [],
         "t_control_show_ms": [],
@@ -21,21 +21,21 @@ def read_timing_log(path):
             parsed = ast.literal_eval(row[0])
             data["frame_idx"].append(parsed[0])
             data["t_capture_ms"].append(parsed[1])
-            data["t_yolo_ms"].append(parsed[2])
-            data["t_vo_ms"].append(parsed[3])
-            data["t_gt_ms"].append(parsed[4])
-            data["t_control_show_ms"].append(parsed[5])
-            data["t_total_ms"].append(parsed[6])
-            data["fps"].append(parsed[7])
+            #data["t_yolo_ms"].append(parsed[2])
+            data["t_vo_ms"].append(parsed[2])
+            data["t_gt_ms"].append(parsed[3])
+            data["t_control_show_ms"].append(parsed[4])
+            data["t_total_ms"].append(parsed[5])
+            data["fps"].append(parsed[6])
     return data
 
 # --- Ganti path sesuai file log ---
-log_path = "latency_fps_log.csv"
+log_path = "latency_fps_log_without YOLO.csv"
 data = read_timing_log(log_path)
 
 # --- Hitung Rata-rata ---
 avg_capture = sum(data["t_capture_ms"]) / len(data["t_capture_ms"])
-avg_yolo = sum(data["t_yolo_ms"]) / len(data["t_yolo_ms"])
+#avg_yolo = sum(data["t_yolo_ms"]) / len(data["t_yolo_ms"])
 avg_vo = sum(data["t_vo_ms"]) / len(data["t_vo_ms"])
 avg_gt = sum(data["t_gt_ms"]) / len(data["t_gt_ms"])
 avg_control = sum(data["t_control_show_ms"]) / len(data["t_control_show_ms"])
@@ -46,7 +46,7 @@ avg_fps = sum(data["fps"]) / len(data["fps"])
 summary_text = (
     f"=== Average Latency & FPS ===\n"
     #f"Capture: {avg_capture:.2f} ms\n"
-    f"YOLO: {avg_yolo:.2f} ms\n"
+    #f"YOLO: {avg_yolo:.2f} ms\n"
     f"VO: {avg_vo:.2f} ms\n"
     f"GroundTruth: {avg_gt:.2f} ms\n"
     f"Control+Display: {avg_control:.2f} ms\n"
@@ -56,7 +56,7 @@ summary_text = (
 
 # --- Plot Waktu Eksekusi ---
 plt.figure(figsize=(12, 7))
-plt.plot(data["frame_idx"], data["t_yolo_ms"], label="YOLO (ms)")
+#plt.plot(data["frame_idx"], data["t_yolo_ms"], label="YOLO (ms)")
 plt.plot(data["frame_idx"], data["t_vo_ms"], label="VO (ms)")
 plt.plot(data["frame_idx"], data["t_gt_ms"], label="Groundtruth (ms)")
 plt.plot(data["frame_idx"], data["t_control_show_ms"], label="Robot Strategies (ms)")
